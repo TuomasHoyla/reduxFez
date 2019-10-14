@@ -1,12 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import 'babel-polyfill'
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import rootReducer from './Reducers'
+import App from './Components/App'
+import thunk from 'redux-thunk'
+import { fetchInitial } from './Actions/asyncActions'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const store = createStore(
+  rootReducer, 
+  devTools,
+  applyMiddleware(thunk)
+  )
+  
+  store.dispatch(fetchInitial(''))
+  
+  render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+  )

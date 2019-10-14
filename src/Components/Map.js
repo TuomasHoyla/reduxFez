@@ -9,7 +9,7 @@ const Map = ({ data }) => {
 
   return (
     <div>
-      <p style={{"textAlign": "center"}}><b>Map</b></p>
+      <div style={{"textAlign": "left"}}><b>Map</b></div>
       <Row className="mapBorder">
         {data.map && drawMap(data.map)}
       </Row>

@@ -1,0 +1,3 @@
+export const TOGGLE_MODAL = 'TOGGLE_MODAL'
+export const RECEIVE_STATE = 'RECEIVE_STATE'
+export const REQUEST_ACTION = 'REQUEST_ACTION'
