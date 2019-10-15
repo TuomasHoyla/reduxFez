@@ -1,13 +1,14 @@
 import { connect } from 'react-redux'
-import { toggleModal } from '../Actions/index'
+import { toggleModal, disableButtons } from '../Actions/index'
 import {fetchMovement, takeItem, dropItem, consumeItem } from '../Actions/asyncActions'
 import Game from '../Components/Game'
 
 const mapStateToProps = (state, props) => ({
     loading: state.Game.loading,
     showModal: state.Game.showModal,
-    modalMessage: state.Game.modalMessage,
-    gameState: state.Game.gameState
+    gameState: state.Game.gameState,
+    error: state.Game.error
+  //  disable: state.Game.disable,
 })
 
 const mapDispatchToProps = {
@@ -16,6 +17,7 @@ const mapDispatchToProps = {
   takeItem,
   dropItem,
   consumeItem,
+  disableButtons,
 }
 
 export default connect(

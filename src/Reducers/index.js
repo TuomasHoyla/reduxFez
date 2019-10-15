@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-const initialState = {showModal : false, loading : false, gameState : {}}
+const initialState = {showModal : false, loading : false, gameState : {}, error : null}
 
 const Game = (state = initialState, action) => {
 
@@ -19,6 +19,13 @@ const Game = (state = initialState, action) => {
           loading: false,
           showModal: false
     }
+    
+    case 'RECEIVE_STATE_ERROR':
+
+      return {
+        ...state,
+        error: action.error.message,
+      }
 
     case 'TOGGLE_MODAL':
 

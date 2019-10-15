@@ -1,9 +1,10 @@
 
 import fetch from 'cross-fetch'
-import {receiveInitial, requestState } from './index'
+import {receiveInitial, receiveError, requestState } from './index'
 
 const baseUrl = 'https://arcane-plateau-73839.herokuapp.com/'
 
+/*
 export const fetchInitial = (command) => {
 
     return (dispatch) =>  {
@@ -13,10 +14,24 @@ export const fetchInitial = (command) => {
         return fetch(baseUrl)
           .then(
             response => response.json(),
-            error => console.log('An error occurred.', error))
+            error =>  receiveError('An error occurred.', error)
+            .catch(console.log('oh no'))
           .then(json => dispatch(receiveInitial(command, json)))
-      }
+        )}
   }
+  */
+
+ export const fetchInitial = (command) => {
+  return dispatch => {
+
+    dispatch(requestState(command))
+    
+    fetch(baseUrl)
+    .then(response => response.json(),)
+    .then(json => dispatch(receiveInitial(command, json)))
+    .catch(err => dispatch(receiveError(err)))
+  }
+}
 
   export const fetchMovement = (direction) => passActionToServer(direction)
   

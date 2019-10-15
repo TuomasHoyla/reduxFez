@@ -7,9 +7,10 @@ import Inventory from './Inventory'
 import RoomItems from './RoomItems'
 import { KeyBoard } from './Keyboard';
 
-const Game = ({showModal, takeItem, dropItem, toggleModal, loading, gameState, fetchMovement, consumeItem}) => (
+const Game = ({showModal, takeItem, dropItem, toggleModal, loading, gameState, fetchMovement, consumeItem, error}) => (
    
    <div className="container-fluid">
+     {error && <div>{error}</div>}
    {! loading ? 
     <div>
       <Col md={4}>
@@ -43,7 +44,7 @@ const Game = ({showModal, takeItem, dropItem, toggleModal, loading, gameState, f
              <Map data={gameState}/>
              </Col>
     </div>
-   : <div>LOADING</div>}
+   : <div className="spinner"></div>}
    </div> 
 )
 
